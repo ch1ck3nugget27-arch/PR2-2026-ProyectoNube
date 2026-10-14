@@ -1,0 +1,40 @@
+:root {
+  --fondo: #eef3f6;
+  --tinta: #14262f;
+  --suave: #5b7280;
+  --linea: #c9d6dd;
+  --acento: #1f6f8b;
+  --ok: #1d7a4a;
+  --error: #b3261e;
+  font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--fondo); color: var(--tinta); line-height: 1.5; }
+header { padding: 2.5rem 1.25rem 1.5rem; max-width: 60rem; margin: 0 auto; }
+header h1 { margin: 0; font-size: 2.6rem; letter-spacing: -0.03em; }
+header p { margin: .25rem 0 0; color: var(--suave); }
+main { max-width: 60rem; margin: 0 auto; padding: 0 1.25rem 3rem; }
+h2 { font-size: 1.1rem; margin: 2rem 0 .75rem; }
+
+.subida { background: #fff; border: 2px dashed var(--linea); border-radius: 10px; padding: 1.25rem; }
+.subida label { display: block; margin-bottom: .5rem; font-weight: 600; }
+.fila { display: flex; gap: .75rem; flex-wrap: wrap; align-items: center; }
+
+button { font: inherit; cursor: pointer; border: 0; border-radius: 6px; padding: .55rem 1rem;
+         background: var(--acento); color: #fff; font-weight: 600; }
+button:hover { filter: brightness(1.1); }
+button:focus-visible, input:focus-visible, a:focus-visible { outline: 3px solid #f2b705; outline-offset: 2px; }
+button.borrar { background: transparent; color: var(--error); padding: .2rem .4rem; }
+
+.aviso { padding: .7rem 1rem; border-radius: 6px; margin: 0 0 1rem; font-weight: 600; }
+.aviso.ok { background: #dff3e8; color: var(--ok); }
+.aviso.error { background: #fbe4e2; color: var(--error); }
+
+.galeria { list-style: none; margin: 0; padding: 0; display: grid;
+           grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 1rem; }
+.galeria li { background: #fff; border-radius: 8px; overflow: hidden; border: 1px solid var(--linea); }
+.galeria img { display: block; width: 100%; height: 170px; object-fit: cover; }
+.meta { display: flex; justify-content: space-between; align-items: center;
+        padding: .5rem .6rem; font-size: .8rem; color: var(--suave); }
+.meta form { margin: 0; }
+.vacio { color: var(--suave); }

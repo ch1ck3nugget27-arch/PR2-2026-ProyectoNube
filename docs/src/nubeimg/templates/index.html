@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NubeImg</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header>
+    <h1>NubeImg</h1>
+    <p>Sube tus imágenes y míralas desde cualquier lugar.</p>
+  </header>
+
+  <main>
+    {% with mensajes = get_flashed_messages(with_categories=true) %}
+      {% for categoria, texto in mensajes %}
+        <p class="aviso {{ categoria }}" role="status">{{ texto }}</p>
+      {% endfor %}
+    {% endwith %}
+
+    <form action="{{ url_for('subir') }}" method="post" enctype="multipart/form-data" class="subida">
+      <label for="imagen">Imagen (PNG, JPG, GIF o WEBP, máximo 5 MB)</label>
+      <div class="fila">
+        <input type="file" id="imagen" name="imagen" accept="image/png,image/jpeg,image/gif,image/webp" required>
+        <button type="submit">Subir imagen</button>
+      </div>
+    </form>
+
+    <h2>Tu galería ({{ imagenes|length }})</h2>
+    {% if imagenes %}
+      <ul class="galeria">
+        {% for img in imagenes %}
+        <li>
+          <a href="{{ url_for('archivo', nombre=img.nombre) }}" target="_blank">
+            <img src="{{ url_for('archivo', nombre=img.nombre) }}" alt="Imagen subida el {{ img.fecha }}" loading="lazy">
+          </a>
+          <div class="meta">
+            <span>{{ img.fecha }} · {{ img.kb }} KB</span>
+            <form action="{{ url_for('borrar', nombre=img.nombre) }}" method="post">
+              <button type="submit" class="borrar">Eliminar</button>
+            </form>
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="vacio">Aún no hay imágenes. Elige una arriba y pulsa «Subir imagen».</p>
+    {% endif %}
+  </main>
+</body>
+</html>

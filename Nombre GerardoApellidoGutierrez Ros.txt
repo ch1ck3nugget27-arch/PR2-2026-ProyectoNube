@@ -1,3 +1,0 @@
-Nombre: GerardoApellido:Gutierrez Rosales
-Grupo: -
-Rol: developer
